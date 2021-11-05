@@ -1,3 +1,0 @@
- - Implementar login e verificação com JWT
- - Melhorar validação de campos que chegam no req.body
- - Padronizar mensagens de erro
