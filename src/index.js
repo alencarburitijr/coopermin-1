@@ -28,14 +28,14 @@ app.use(express.urlencoded({extended: true}));
 
 //routes
 app.use('/api', routerApi);
-app.use('/clientes', routerClientes);
-app.use('/contratos', routerContratos);
-app.use('/pedidos', routerPedidos);
-app.use('/produtos', routerProdutos);
+// app.use('/clientes', routerClientes);
+// app.use('/contratos', routerContratos);
+// app.use('/pedidos', routerPedidos);
+// app.use('/produtos', routerProdutos);
 
 //404
 app.use((req, res) => {
-    res.status(404).json({error: true, message: 'Route not found :('});
+    res.status(404).json({error: true, message: 'Rota não encontrada.'});
 });
 
 app.listen(app.get('port'), () => {

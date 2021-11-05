@@ -29,7 +29,7 @@ export const loginMobile = async (req, res) => {
                 res.json({ error: true, message: "Usuário não encontrado." });
             }
         } catch(err) {
-            res.json({ error: true, message: "Erro ao consultar dados." });
+            res.json({ error: true, message: err.message });
         }
     } else {
         res.json({ error: true, message: "Parâmetros não encontrados." });
