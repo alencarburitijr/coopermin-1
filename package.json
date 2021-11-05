@@ -4,10 +4,11 @@
   "description": "Projeto Integrador Unifimes 2021 - Sistema desenvolvido para a Coopermin",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "start-dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Galera do projeto integrador",
+  "author": "Projeto Integrador",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
