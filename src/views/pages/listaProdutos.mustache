@@ -1,0 +1,46 @@
+{{>partials/header}}
+    
+<!-- Side bar começa aqui -->
+{{>partials/sidebar}}
+
+<script> document.title = "Lista de Produtos" </script>
+
+<!-- Conteúdo da página começa aqui -->
+<div class="col-10">
+    <div class="container">      
+        <div class="col ">
+            <div class="sidebar-heading mt-3 mb-4 py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+                Lista de Produtos
+            </div>
+            <a href="/produto/adicionar" class="button-produto btn btn-primary">Adicionar novo</a>
+            <table class="table table-hover text-center">
+                <thead>
+                    
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#produtos}}
+                    <tr>
+                        <th scope="row">{{COD_PRODUTO}}</th>
+                        <td>{{NOME}}</td>
+                        <td>{{DESCRICAO}}</td>
+                        <td>
+                            <div class="d-inline">
+                                <a href="/produto/alterar/{{COD_PRODUTO}}" class="button-produto btn btn-primary">Editar</a>
+                                <a href="/produto/deletar/{{COD_PRODUTO}}" class="button-produto btn btn-danger">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                {{/produtos}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{{>partials/footer}}

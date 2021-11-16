@@ -1,0 +1,23 @@
+.form-recuperacaoSenha{   
+    border-color: #00ac96;
+    color: #00ac96;
+}
+.logoRecuperacao{
+    text-align: center;
+    padding: 10px;
+}
+label,
+input,
+button{
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+#inputPassword6{
+    width: 25rem;
+}
+.btn {
+    padding: 100px;
+}
+.button-click{
+    padding-top: 15px;
+}

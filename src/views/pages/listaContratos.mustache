@@ -1,0 +1,54 @@
+{{>partials/header}}
+    
+<!-- Side bar começa aqui -->
+{{>partials/sidebar}}
+
+<script> document.title = "Lista de Contratos" </script>
+
+<!-- Conteúdo da página começa aqui -->
+<div class="col-10">
+    <div class="container">
+        <div class="col ">
+            <div class="sidebar-heading mt-3 mb-4 py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+                Lista de Contratos
+            </div>
+            <a href="/contrato/adicionar" class="button-produto btn btn-primary">Adicionar novo</a>
+            <table class="table table-hover text-center">
+                <thead>
+                    
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Associado</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Data Emissão</th>
+                        <th scope="col">Data Entrega</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Desconto</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#contratos}}
+                        <tr>
+                            <th scope="row">{{COD_CONTRATO}}</th>
+                            <td>{{NOME_ASSOCIADO}}</td>
+                            <td>{{NOME_CLIENTE}}</td>
+                            <td>{{DATA_EMISSAO}}</td>
+                            <td>{{DATA_ENTREGA}}</td>
+                            <td>{{VALOR}}</td>
+                            <td>{{DESCONTO}} %</td>
+                            <td>
+                                <div class="d-inline">
+                                    <a href="/contrato/alterar/{{COD_CONTRATO}}" class="button-produto btn btn-primary">Editar</a>
+                                    <a href="/contrato/deletar/{{COD_CONTRATO}}" class="button-produto btn btn-danger">Excluir</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/contratos}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{{>partials/footer}}

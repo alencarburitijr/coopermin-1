@@ -15,7 +15,7 @@ export const ClienteTelefone = sequelize.define("ClienteTelefone", {
         type: DataTypes.STRING,
     },
     TIPO: {
-        type: DataTypes.TINYINT, 
+        type: DataTypes.STRING, 
     }
 }, {
     tableName: 'clientes_telefones',

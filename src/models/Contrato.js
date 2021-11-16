@@ -12,12 +12,19 @@ export const Contrato = sequelize.define("Contrato", {
         type: DataTypes.INTEGER,
     },
     DATA_EMISSAO: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
     },
     DATA_ENTREGA: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
+    },
+    VALOR: {
+        type: DataTypes.FLOAT,
+    },
+    DESCONTO: {
+        type: DataTypes.FLOAT,
     }
 }, {
     tableName: 'contrato',
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
 }); 

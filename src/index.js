@@ -4,11 +4,11 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mustache from 'mustache-express';
 
-import routerClientes from './routes/clientes.routes.js';
-import routerContratos from './routes/contratos.routes.js';
-import routerPedidos from './routes/pedidos.routes.js';
-import routerProdutos from './routes/produtos.routes.js';
 import routerApi from './routes/api.routes.js';
+import routerUsuario from './routes/usuario.routes.js';
+import routerAssociado from './routes/associado.routes.js';
+import routerContrato from './routes/contrato.routes.js';
+import routerProduto from './routes/produto.routes.js';
 
 dotenv.config();
 
@@ -23,15 +23,20 @@ app.set('views', path.join(path.resolve(), 'src/views'));
 app.engine('mustache', mustache());
 
 app.use(express.json());
-app.use(express.static(path.join(path.resolve(), '../public')));
+app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 
 //routes
 app.use('/api', routerApi);
-// app.use('/clientes', routerClientes);
-// app.use('/contratos', routerContratos);
-// app.use('/pedidos', routerPedidos);
-// app.use('/produtos', routerProdutos);
+app.use('/usuario', routerUsuario);
+app.use('/associado', routerAssociado);
+app.use('/contrato', routerContrato);
+app.use('/produto', routerProduto);
+
+//página inicial
+app.use('/', (req, res) => {
+    res.render('pages/paginaInicial');
+});
 
 //404
 app.use((req, res) => {

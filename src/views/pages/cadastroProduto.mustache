@@ -1,0 +1,38 @@
+{{>partials/header}}
+    
+<!-- Side bar começa aqui -->
+{{>partials/sidebar}}
+
+<script> document.title = "Cadastro de Produtos" </script>
+
+
+<!-- Conteúdo da página começa aqui -->
+<div class="col-10">
+  <div class="container">
+    <div class="row">
+    <div class="sidebar-heading mt-3 mb-4 py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+        Cadastro de Produtos
+    </div>
+    <form class="formularioCadastro row g-3" method="POST" action="/produto/adicionar">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="inputNome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="inputNome" name="nome">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="inputDescricao" class="form-label">Descricao</label>
+            <input type="textarea" class="form-control" id="inputDescricao" name="descricao">
+          </div>
+        </div>
+        <div class="col-12">
+          <input type="submit" class="btn btn-primary" value="Cadastrar"/>
+        </div>
+      </form>
+    </div>
+  </div>  
+</div>
+
+<!-- Conteúdo da página termina aqui -->
+<{{>partials/footer}}    
