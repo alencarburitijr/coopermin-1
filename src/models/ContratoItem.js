@@ -16,5 +16,6 @@ export const ContratoItem = sequelize.define("ContratoItem", {
     },
 }, {
     tableName: 'itens_contrato',
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
 });

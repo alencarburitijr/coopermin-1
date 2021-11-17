@@ -1,0 +1,115 @@
+{{>partials/header}}
+    
+<!-- Side bar começa aqui -->
+{{>partials/sidebar}}
+
+<script> document.title = "Alterar Cliente" </script>
+
+<!-- Conteúdo da página começa aqui -->
+<div class="col-10">
+  <div class="container">
+        <div class="row">
+            <div class="sidebar-heading mt-3 mb-4 py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+                Alterar Cliente
+            </div>
+            <form class="formularioCadastro row g-3" method="POST" action="/cliente/alterar/{{cliente.COD_CLIENTE}}"> 
+                <div class="col-md-4">
+                    <label for="inputNome" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="inputNome" name="nome" value="{{cliente.NOME}}">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputRazao" class="form-label">Razão Social</label>
+                    <input type="text" class="form-control" id="inputRazao" name="razao_social" value="{{cliente.RAZAO_SOCIAL}}">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputCPF" class="form-label">CPF/CNPJ</label>
+                    <input type="number" class="form-control" id="inputCPF" name="cpf_cnpj" value="{{cliente.CPF_CNPJ}}">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="inputLogradouro" class="form-label">Logradouro</label>
+                    <input type="text" class="form-control" id="inputLogradouro" name="logradouro" value="{{cliente.LOGRADOURO}}">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputComplemento" class="form-label">Complemento</label>
+                    <input type="text" class="form-control" id="inputComplemento" name="complemento" value="{{cliente.COMPLEMENTO}}">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="inputBairro" class="form-label">Bairro</label>
+                    <input type="text" class="form-control" id="inputBairro" name="bairro" value="{{cliente.BAIRRO}}">
+                </div>
+                <div class="col-md-3">
+                    <label for="inputCidade" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" id="inputCidade" name="cidade" value="{{cliente.CIDADE}}">
+                </div>
+                <div class="col-md-3">
+                    <label for="inputEstado" class="form-label">Estado</label>
+                    <select id="inputAssociado" class="form-select" name="estado">
+                        <option value="{{cliente.ESTADO}}">{{cliente.ESTADO}}</option>
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
+                        <option value="DF">DF</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="inputCEP" class="form-label">CEP</label>
+                    <input type="number" class="form-control" id="inputCEP" name="cep" value="{{cliente.CEP}}">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="inputTelefone" class="form-label">Telefone</label>
+                    <input type="text" class="form-control" id="inputTelefone" name="telefone" value="{{clienteTelefone.NUMERO}}">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label"><strong>Tipo</strong></label><br>
+                    <label for="inputTelefoneTel" class="form-label">Telefone</label>
+                    <input type="radio" class="form-radio" id="inputTelefoneTel" name="tipo_telefone" value="telefone"><br>
+                    <label for="inputTelefoneCel" class="form-label">Celular</label>
+                    <input type="radio" class="form-radio" id="inputTelefoneCel" name="tipo_telefone" value="celular">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="inputInscEstadual" class="form-label">Inscrição Estadual</label>
+                        <input type="text" class="form-control" id="inputInscEstadual" name="inscricao_estadual" value="{{cliente.INSCRICAO_ESTADUAL}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputInscMunicipal" class="form-label">Inscrição Municipal</label>
+                        <input type="text" class="form-control" id="inputInscMunicipal" name="inscricao_municipal" value="{{cliente.INSCRICAO_MUNICIPAL}}">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <input type="submit" class="btn btn-primary" value="Salvar" />
+                </div>
+            </form>
+        </div>  
+    </div>
+</div>
+
+<!-- Conteúdo da página termina aqui -->
+{{>partials/footer}}    

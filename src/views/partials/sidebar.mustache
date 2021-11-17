@@ -1,0 +1,58 @@
+<!-- Side bar do sistema, o outro é sempre um col-10 --> 
+<div class="col-2">
+    <div class="bg-white" id="sidebar-wrapper">
+    <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+        <i class="me-2"></i><a href="/" class="logo">Coopermin</a>
+    </div>
+
+        <div class="list-group list-group-flush my-4 tex">
+            <a href="#produtoCollapse" class="list-group-item list-group-item-action bg-transparent second-text fw-bold" data-bs-toggle="collapse" href="#produtoCollapse" role="button" aria-expanded="false" aria-controls="produtoCollapse">
+                <span><img src="/icons/archive.svg" alt=""><i class="icons">Produtos</i></span> <img class="dropdown-arrow" src="/icons/drop-down-arrow.png"/>
+            </a>
+                <div class="collapse ms-5" id="produtoCollapse">
+                    <a href="/produto/adicionar" class="items">
+                        <div class="skinner"> - Cadastro Produtos</div>
+                    </a>
+                    <a href="/produto/lista" class="items">
+                        <div class="skinner"> - Lista Produtos</div>
+                    </a>
+                </div>
+            <a href="#associadoCollapse" class="list-group-item list-group-item-action bg-transparent second-text fw-bold" data-bs-toggle="collapse" href="#associadoCollapse" role="button" aria-expanded="false" aria-controls="associadoCollapse">
+                <span><img src="/icons/person-plus.svg" alt=""><i class="icons">Associados</i></span> <img class="dropdown-arrow" src="/icons/drop-down-arrow.png"/>
+            </a>
+                <div class="collapse ms-5" id="associadoCollapse">
+                    <a href="/associado/adicionar" class="items">
+                        <div class="skinner"> - Cadastro Associado</div>
+                    </a>
+                    <a href="/associado/lista" class="items">
+                        <div class="skinner"> - Lista Associados</div>
+                    </a>
+                </div>
+            <a href="#clienteCollapse" class="list-group-item list-group-item-action bg-transparent second-text fw-bold" data-bs-toggle="collapse" href="#clienteCollapse" role="button" aria-expanded="false" aria-controls="clienteCollapse">
+                <span><img src="/icons/person-lines-fill.svg" alt=""><i class="icons">Clientes</i></span> <img class="dropdown-arrow" src="/icons/drop-down-arrow.png"/>
+            </a>
+                <div class="collapse ms-5" id="clienteCollapse" >
+                    <a href="/cliente/adicionar" class="items">
+                        <div class="skinner"> - Cadastro Cliente</div>
+                    </a>
+                    <a href="/cliente/lista" class="items">
+                        <div class="skinner"> - Lista Clientes</div>
+                    </a>
+                </div>
+            <a href="#contratoCollapse" class="list-group-item list-group-item-action bg-transparent second-text fw-bold" data-bs-toggle="collapse" href="#contratoCollapse" role="button" aria-expanded="false" aria-controls="contratoCollapse">
+                <span><img src="/icons/people.svg" alt=""><i class="icons">Contratos</i></span> <img class="dropdown-arrow" src="/icons/drop-down-arrow.png"/>
+            </a>
+                <div class="collapse ms-5" id="contratoCollapse" >
+                    <a href="/contrato/adicionar" class="items">
+                        <div class="skinner"> - Cadastro Contrato</div>
+                    </a>
+                    <a href="/contrato/lista" class="items">
+                        <div class="skinner"> - Lista Contratos</div>
+                    </a>
+                </div>
+            <a href="/login/sair" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <span><img src="/icons/people.svg" alt=""><i class="icons vermelho">Sair</i></span>
+            </a>
+        </div>
+    </div>
+</div>

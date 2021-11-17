@@ -1,0 +1,63 @@
+{{>partials/header}}
+    
+<!-- Side bar começa aqui -->
+{{>partials/sidebar}}
+
+<script> document.title = "Altera Contrato" </script>
+
+<!-- Conteúdo da página começa aqui -->
+<div class="col-10">
+  <div class="container">
+        <div class="row">
+            <div class="sidebar-heading mt-3 mb-4 py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+                Alterar Contrato
+            </div>
+            <form class="formularioCadastro row g-3" method="POST" action="/contrato/alterar/{{contrato.COD_CONTRATO}}">
+                <div class="col-md-6">
+                    <label for="inputAssociado" class="form-label">Associado</label>
+                    <select id="inputAssociado" class="form-select" name="cod_associado">
+                        <option value="{{contrato.COD_ASSOCIADO}}" selected="selected">{{matches.associadoNome}}</option>
+                        {{#associados}}
+                            <option value="{{COD_ASSOCIADO}}">{{NOME}}</option>
+                        {{/associados}}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputCliente" class="form-label">Cliente</label>
+                    <select id="inputCliente" class="form-select" name="cod_cliente">
+                        <option value="{{contrato.COD_CLIENTE}}">{{matches.clienteNome}}</option>
+                        {{#clientes}}
+                            <option value="{{COD_CLIENTE}}">{{NOME}}</option>
+                        {{/clientes}}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="inputDataEmissao" class="form-label">Data Emissão</label>
+                    <input type="date" class="form-control" id="inputDataEmissao" name="data_emissao" value="{{contrato.DATA_EMISSAO}}"/>
+                </div>
+                <div class="col-md-3">
+                    <label for="inputDataEntrega" class="form-label">Data Entrega</label>
+                    <input type="date" class="form-control" id="inputDataEntrega" name="data_entrega" value="{{contrato.DATA_ENTREGA}}"/>
+                </div>
+                <div class="col-md-3">
+                    <label for="inputValor" class="form-label">Valor</label>
+                    <input type="number" class="form-control" id="inputValor" name="valor" value="{{contrato.VALOR}}"/>
+                </div>
+                <div class="col-md-3">
+                    <label for="inputDesconto" class="form-label">Desconto</label>
+                    <input type="number" class="form-control" id="inputDesconto" name="desconto" value="{{contrato.DESCONTO}}"/>
+                </div>
+                <div class="col-md-12">
+                    <label for="inputDetalhes" class="form-label">Detalhes/Descrição Contrato</label>
+                    <input type="text" class="form-control" id="inputDetalhes" name="item_contrato" value="{{itemContrato.ITEM_CONTRATO}}"/>
+                </div>
+                <div class="col-12">
+                    <input type="submit" class="btn btn-primary" value="Salvar" />
+                </div>
+            </form>
+        </div>  
+    </div>
+</div>
+
+<!-- Conteúdo da página termina aqui -->
+{{>partials/footer}}    

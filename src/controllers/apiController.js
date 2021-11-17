@@ -1,9 +1,9 @@
 import JWT from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import bcrypt from 'bcrypt';
 
 import { Contrato, ContratoItem, Pedido, PedidoItem } from '../models/index.js';
 import { Usuario } from '../models/Usuario.js';
-import { Sequelize } from 'sequelize';
 
 dotenv.config();
 
@@ -13,11 +13,17 @@ export const loginMobile = async (req, res) => {
         let senha = req.body.senha;
 
         try {
-            let usuario = await Usuario.findOne({
-                where: {login, senha}
-            });
+            let usuario = await Usuario.findOne({ where: { login } });
+            if(!usuario) {
+                res.json({ error: true, message: "Usuário não encontrado." });
+            }
 
-            if(usuario) {
+            let matchSenha = await bcrypt.compare(senha, usuario.SENHA);
+            if(!matchSenha) {
+                res.json({ error: true, message: "Usuário não encontrado." });
+            }
+
+            if(usuario && matchSenha) {
                 const token = JWT.sign(
                     { cod_usuario: usuario.COD_USUARIO, cod_associado: usuario.COD_ASSOCIADO, login: usuario.LOGIN, tipo: usuario.TIPO },
                     process.env.JWT_SECRET,

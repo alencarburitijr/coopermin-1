@@ -11,11 +11,8 @@ export const Produto = sequelize.define("Produto", {
     NOME: {
         type: DataTypes.INTEGER,
     },
-    UNIDADE: {
-        type: DataTypes.DATE,
-    },
-    PRECO: {
-        type: DataTypes.DATE,
+    DESCRICAO: {
+        type: DataTypes.STRING
     }
 }, {
     tableName: 'produto',

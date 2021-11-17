@@ -36,5 +36,12 @@ export const Auth = {
             res.status(403);
             res.json({ error: true, message: "Não autorizado." });
         }
+    },
+    logged: async (req, res, next) => {
+        if(req.session.logged) {
+            next();
+        } else {
+            res.redirect('/login');
+        }
     }
 }

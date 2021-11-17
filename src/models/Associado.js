@@ -40,5 +40,6 @@ export const Associado = sequelize.define("Associado", {
     }
 }, {
     tableName: 'cad_associado',
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
 }); 
