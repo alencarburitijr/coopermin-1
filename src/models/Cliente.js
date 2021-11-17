@@ -44,5 +44,4 @@ export const Cliente = sequelize.define("Cliente", {
 }, {
     tableName: 'cad_cliente',
     timestamps: false,
-    freezeTableName: true
 }); 

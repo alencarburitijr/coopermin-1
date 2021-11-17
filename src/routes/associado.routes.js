@@ -7,19 +7,19 @@ import * as associadoValidator from '../validators/associadoValidator.js';
 /* Base dessas rotas: /associado */
 
 //lista associados
-router.get('/lista', associadoController.listaAssociados);
+router.get('/lista', Auth.logged, associadoController.listaAssociados);
 
-router.get('/adicionar', associadoController.cadastraAssociadoGet);
+router.get('/adicionar', Auth.logged, associadoController.cadastraAssociadoGet);
 
 //cadastra associado
-router.post('/adicionar', associadoValidator.associado, associadoController.cadastraAssociado);
+router.post('/adicionar', Auth.logged, associadoValidator.associado, associadoController.cadastraAssociado);
 
 //altera associado
-router.post('/alterar/:cod_associado', associadoValidator.associado, associadoController.alteraAssociado);
+router.post('/alterar/:cod_associado', Auth.logged, associadoValidator.associado, associadoController.alteraAssociado);
 
-router.get('/alterar/:cod_associado', associadoController.alteraAssociadoGet);
+router.get('/alterar/:cod_associado', Auth.logged, associadoController.alteraAssociadoGet);
 
 //deleta associado
-router.get('/deletar/:cod_associado', associadoController.deletaAssociado);
+router.get('/deletar/:cod_associado', Auth.logged, associadoController.deletaAssociado);
 
 export default router;

@@ -7,19 +7,19 @@ import * as produtoValidator from '../validators/produtoValidator.js';
 /* Base dessas rotas: /associado */
 
 //lista produto
-router.get('/lista', produtoController.listaProdutos);
+router.get('/lista', Auth.logged, produtoController.listaProdutos);
 
-router.get('/adicionar', produtoController.cadastraProdutoGet);
+router.get('/adicionar', Auth.logged, produtoController.cadastraProdutoGet);
 
 //cadastra produto
-router.post('/adicionar', produtoValidator.produto, produtoController.cadastraProduto);
+router.post('/adicionar', Auth.logged, produtoValidator.produto, produtoController.cadastraProduto);
 
 //altera produto
-router.post('/alterar/:cod_produto', produtoValidator.produto, produtoController.alteraProduto);
+router.post('/alterar/:cod_produto', Auth.logged, produtoValidator.produto, produtoController.alteraProduto);
 
-router.get('/alterar/:cod_produto', produtoController.alteraProdutoGet);
+router.get('/alterar/:cod_produto', Auth.logged, produtoController.alteraProdutoGet);
 
 //deleta produto
-router.get('/deletar/:cod_produto', produtoController.deletaProduto);
+router.get('/deletar/:cod_produto', Auth.logged, produtoController.deletaProduto);
 
 export default router;

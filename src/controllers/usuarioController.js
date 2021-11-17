@@ -43,6 +43,45 @@ export const login = async (req, res) => {
     }
 }
 
+export const loginSession = async (req, res) => {
+    let login = req.body.login;
+    let senha = req.body.senha;
+
+    let attributes = ['COD_USUARIO', 'COD_ASSOCIADO', 'LOGIN', 'SENHA', 'TIPO', 'BLOQUEADO'];
+
+    try {
+        let usuario = await Usuario.findOne({ where: { login }, attributes });
+        if(!usuario) {
+            res.json({ error: true, message: "Usuário não encontrado." });
+        }
+
+        let matchSenha = await bcrypt.compare(senha, usuario.SENHA);
+        if(!matchSenha) {
+            res.json({ error: true, message: "Usuário não encontrado." });
+        }
+
+        if(usuario && matchSenha) {
+            req.session.logged = true;
+            res.redirect('/');
+        } else {
+            res.session.logged = false;
+            res.json({ error: true, message: "Usuário não encontrado." });
+        }
+    } catch(err) {
+        res.json({ error: true, message: err.message });
+    }
+}
+
+export const loginSessionGet = async (req, res) => {
+    res.render('pages/login');
+}
+
+export const sair = async (req, res) => {
+    req.session.destroy(() => {
+        res.redirect('/login');
+    });
+}
+
 export const listaUsuarios = async (req, res) => {
     let attributes = ['COD_USUARIO', 'COD_ASSOCIADO', 'LOGIN', 'TIPO', 'BLOQUEADO'];
     try {

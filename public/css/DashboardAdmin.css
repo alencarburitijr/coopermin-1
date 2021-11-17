@@ -98,7 +98,10 @@ i img{
     left: 90% !important;
 }
 
-a img {
-    margin: 0;
-    width: 8px;
+.logo {
+    text-decoration: none;
+    color: inherit;
+}
+.vermelho {
+    color: red;
 }

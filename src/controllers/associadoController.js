@@ -1,5 +1,4 @@
 import { Usuario, Associado, AssociadoTelefone } from '../models/index.js';
-
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import { validationResult, matchedData } from 'express-validator';

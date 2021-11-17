@@ -7,19 +7,19 @@ import * as contratoValidator from '../validators/contratoValidator.js';
 /* Base dessas rotas: /contrato */
 
 //lista contratos
-router.get('/lista', contratoController.listaContratos);
+router.get('/lista', Auth.logged, contratoController.listaContratos);
 
-router.get('/adicionar', contratoController.cadastraContratoGet);
+router.get('/adicionar', Auth.logged, contratoController.cadastraContratoGet);
 
 //cadastra contratos
-router.post('/adicionar', contratoValidator.contrato, contratoController.cadastraContrato);
+router.post('/adicionar', Auth.logged, contratoValidator.contrato, contratoController.cadastraContrato);
 
 //altera contratos
-router.post('/alterar/:cod_contrato', contratoValidator.contrato, contratoController.alteraContrato);
+router.post('/alterar/:cod_contrato', Auth.logged, contratoValidator.contrato, contratoController.alteraContrato);
 
-router.get('/alterar/:cod_contrato', contratoController.alteraContratoGet);
+router.get('/alterar/:cod_contrato', Auth.logged, contratoController.alteraContratoGet);
 
 //deleta contratos
-router.get('/deletar/:cod_contrato', contratoController.deletaContrato);
+router.get('/deletar/:cod_contrato', Auth.logged, contratoController.deletaContrato);
 
 export default router;
