@@ -15,13 +15,13 @@ export const loginMobile = async (req, res) => {
         try {
             let usuario = await Usuario.findOne({ where: { LOGIN: login }, attributes: ['COD_ASSOCIADO', 'LOGIN', 'SENHA', 'TIPO', 'BLOQUEADO'] });
             if(!usuario) {
-                res.json({ error: true, message: "Usuário não encontrado usuario." });
+                res.json({ error: true, message: "Usuário não encontrado." });
                 return;
             }
 
             let matchSenha = await bcrypt.compare(senha, usuario.SENHA);
             if(!matchSenha) {
-                res.json({ error: true, message: "Usuário não encontrado senha." });
+                res.json({ error: true, message: "Usuário não encontrado." });
                 return;
             }
 
