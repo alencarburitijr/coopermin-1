@@ -2,9 +2,9 @@ import JWT from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 
-import { Contrato, ContratoItem, Pedido, PedidoItem } from '../models/index.js';
-import { Usuario } from '../models/Usuario.js';
-
+import { Contrato, ContratoItem, Pedido, PedidoItem, Usuario, Associado, Cliente } from '../models/index.js';
+//import { Usuario } from '../models/Usuario.js';
+import { sequelize } from '../instances/mysql.js';
 dotenv.config();
 
 export const loginMobile = async (req, res) => {
@@ -13,14 +13,16 @@ export const loginMobile = async (req, res) => {
         let senha = req.body.senha;
 
         try {
-            let usuario = await Usuario.findOne({ where: { login } });
+            let usuario = await Usuario.findOne({ where: { LOGIN: login }, attributes: ['COD_ASSOCIADO', 'LOGIN', 'SENHA', 'TIPO', 'BLOQUEADO'] });
             if(!usuario) {
-                res.json({ error: true, message: "Usuário não encontrado." });
+                res.json({ error: true, message: "Usuário não encontrado usuario." });
+                return;
             }
 
             let matchSenha = await bcrypt.compare(senha, usuario.SENHA);
             if(!matchSenha) {
-                res.json({ error: true, message: "Usuário não encontrado." });
+                res.json({ error: true, message: "Usuário não encontrado senha." });
+                return;
             }
 
             if(usuario && matchSenha) {
@@ -35,7 +37,7 @@ export const loginMobile = async (req, res) => {
                 res.json({ error: true, message: "Usuário não encontrado." });
             }
         } catch(err) {
-            res.json({ error: true, message: err.message });
+            res.json({ error: true, message: "Erro ao buscar informações." });
         }
     } else {
         res.json({ error: true, message: "Parâmetros não encontrados." });
@@ -45,14 +47,41 @@ export const loginMobile = async (req, res) => {
 //busca e retorna contratos de um associado
 export const buscaContratos = async (req, res) => {
     try {
-        let contratos = await Contrato.findAll({
-                include: [{
-                    model: ContratoItem,
-                    required: true,
-                    attributes: ['COD_CONTRATO', 'ITEM_CONTRATO']
-                }],
-                where: { COD_ASSOCIADO: res.locals.codAssociado },
-            });
+        // let contratos = await Contrato.findAll({
+        //     include: [{
+        //         model: ContratoItem,
+        //         required: true,
+        //         attributes: ['COD', 'COD_CONTRATO', 'ITEM_CONTRATO']
+        //     }],
+        //     where: { COD_ASSOCIADO: res.locals.codAssociado}, attributes: ['COD_CONTRATO', 'COD_ASSOCIADO', 'COD_CLIENTE', 'DATA_EMISSAO', 'DATA_ENTREGA', 'VALOR', 'DESCONTO']
+        // });
+
+        const contratos = await sequelize.query(
+            `SELECT 
+                Contrato.COD_CONTRATO,
+                Contrato.COD_ASSOCIADO,
+                Contrato.COD_CLIENTE,
+                Contrato.DATA_EMISSAO,
+                Contrato.DATA_ENTREGA,
+                Contrato.VALOR,
+                Contrato.DESCONTO,
+                ContratoItems.ITEM_CONTRATO,
+                Associado.NOME AS NOME_ASSOCIADO,
+                Associado.RAZAO_SOCIAL AS RS_ASSOCIADO,
+                Cliente.NOME AS NOME_CLIENTE,
+                Cliente.RAZAO_SOCIAL AS RS_CLIENTE
+            FROM 
+                contrato AS Contrato
+            LEFT OUTER JOIN 
+                itens_contrato AS ContratoItems ON Contrato.COD_CONTRATO = ContratoItems.COD_CONTRATO 
+            LEFT OUTER JOIN 
+                cad_associado AS Associado ON Contrato.COD_ASSOCIADO = Associado.COD_ASSOCIADO 
+            LEFT OUTER JOIN 
+                cad_cliente AS Cliente ON Contrato.COD_CLIENTE = Cliente.COD_CLIENTE
+            WHERE
+                Contrato.COD_ASSOCIADO = ${res.locals.codAssociado}`, 
+            { model: Contrato, nest: true, raw: true, type: sequelize.QueryTypes.SELECT });
+
         res.json({ error: false, contratos });
     } catch(err) {
         res.json({ error: true, message: err.message });
@@ -69,7 +98,7 @@ export const buscaContrato = async (req, res) => {
                 required: true,
                 attributes: ['COD_CONTRATO', 'ITEM_CONTRATO']
             }],
-            where: { COD_CONTRATO: cod_contrato },
+            where: { COD_CONTRATO: cod_contrato }, attributes: ['COD_CONTRATO', 'COD_ASSOCIADO', 'COD_CLIENTE', 'DATA_EMISSAO', 'DATA_ENTREGA', 'VALOR', 'DESCONTO']
         });
         
         if(contrato) {
@@ -78,7 +107,7 @@ export const buscaContrato = async (req, res) => {
             res.json({ error: true, message: 'Contrato não encontrado'});
         }
     } catch(err) {
-        res.json({ error: true, message: "Erro ao buscar contrato." });
+        res.json({ error: true, message: err.message });
     }
 }
 
@@ -88,7 +117,7 @@ export const buscaPedidos = async (req, res) => {
         let pedidos = await Pedido.findAll({ 
             include: [{
                 model: PedidoItem,
-                required: true,
+                required: false,
                 attributes: ['PRODUTO', 'QTD', 'PRECO_UND', 'PRECO_TOTAL', 'UNIDADE']
             }],
             where: { COD_ASSOCIADO: res.locals.codAssociado },
