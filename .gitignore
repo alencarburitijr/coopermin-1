@@ -1,5 +1,5 @@
 /node_modules
 .env
-
+/public/img
 a-fazer.txt
 casos_de_uso.png

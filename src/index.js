@@ -11,6 +11,7 @@ import routerAssociado from './routes/associado.routes.js';
 import routerContrato from './routes/contrato.routes.js';
 import routerProduto from './routes/produto.routes.js';
 import routerCliente from './routes/cliente.routes.js';
+import routerAnuncio from './routes/anuncio.routes.js';
 import routerLogin from './routes/login.routes.js';
 import routerStart from './routes/start.routes.js';
 
@@ -42,6 +43,7 @@ app.use('/associado', routerAssociado);
 app.use('/contrato', routerContrato);
 app.use('/produto', routerProduto);
 app.use('/cliente', routerCliente);
+app.use('/anuncio', routerAnuncio);
 app.use('/login', routerLogin);
 app.use(routerStart); // página inicial
 

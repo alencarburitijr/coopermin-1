@@ -7,7 +7,7 @@ import * as contratoValidator from '../validators/contratoValidator.js';
 /* Base dessas rotas: /contrato */
 
 //lista contratos
-router.get('/lista', Auth.logged, contratoController.listaContratos);
+router.get('/lista', contratoController.listaContratos);
 
 router.get('/adicionar', Auth.logged, contratoController.cadastraContratoGet);
 

@@ -2,20 +2,22 @@ import Sequelize from 'sequelize';
 const { DataTypes } = Sequelize;
 import { sequelize } from '../instances/mysql.js';
 
-export const Produto = sequelize.define("Produto", {
-    COD_PRODUTO: {
+export const Anuncio = sequelize.define("Anuncio", {
+    COD_ANUNCIO: {
         primaryKey: true,
         type: DataTypes.INTEGER,
         autoIncrement: true
     },
-    NOME: {
+    COD_PRODUTO: {
         type: DataTypes.INTEGER,
     },
-    DESCRICAO: {
-        type: DataTypes.STRING
+    IMG: {
+        type: DataTypes.STRING,
     }
 }, {
-    tableName: 'produto',
+    tableName: 'anuncios',
     timestamps: false,
-    freezeTableName: true,
+    freezeTableName: true
 }); 
+
+//tentar fazer associação de tabelas por aqui e nao pelo index

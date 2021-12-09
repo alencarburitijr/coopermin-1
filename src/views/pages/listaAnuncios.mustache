@@ -1,0 +1,45 @@
+{{>partials/header}}
+    
+<!-- Side bar começa aqui -->
+{{>partials/sidebar}}
+
+<script> document.title = "Lista de Anúncios" </script>
+
+<!-- Conteúdo da página começa aqui -->
+<div class="col-10">
+    <div class="container">
+        <div class="col ">
+            <div class="sidebar-heading mt-3 mb-4 py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+                Lista de Anúncios
+            </div>
+            <a href="/anuncio/adicionar" class="button-produto btn btn-primary">Adicionar novo</a>
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Imagem</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#anuncios}}
+                        <tr>
+                            <th scope="row">{{COD_ANUNCIO}}</th>
+                            <td>{{Produto.NOME}}</td>
+                            <td><img src="/img/{{IMG}}" height="80"/></td>
+                            <td>
+                                <div class="d-inline">
+                                    <a href="/anuncio/alterar/{{COD_ANUNCIO}}" class="button-produto btn btn-primary">Editar</a>
+                                    <a href="/anuncio/deletar/{{COD_ANUNCIO}}" class="button-produto btn btn-danger">Excluir</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/anuncios}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{{>partials/footer}}

@@ -1,0 +1,41 @@
+{{>partials/header}}
+    
+<!-- Side bar começa aqui -->
+{{>partials/sidebar}}
+
+<script> document.title = "Alterar Anúncio" </script>
+
+<!-- Conteúdo da página começa aqui -->
+<div class="col-10">
+  <div class="container">
+        <div class="row">
+            <div class="sidebar-heading mt-3 mb-4 py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+                Alterar Anúncio
+            </div>
+            <form class="formularioCadastro row g-3" enctype="multipart/form-data" method="POST" action="/anuncio/alterar/{{anuncios.COD_ANUNCIO}}"> 
+                <div class="col-md-4">
+                    <label for="selectProduto" class="form-label">Produto</label>
+                    <select id="inputAnuncio" class="form-select" name="cod_produto" id="selectProduto">
+                        <option value="{{anuncios.COD_PRODUTO}}" selected="selected">{{anuncios.Produto.NOME}}</option>
+                        {{#produtos}}
+                            <option value="{{COD_PRODUTO}}">{{NOME}}</option>
+                        {{/produtos}}
+                    </select>
+                </div>
+                <br/>
+                <div class="col-md-4">
+                    <div class="">Imagem atual</div>
+                    <img src="/img/{{anuncios.IMG}}" height="250" border="1" />
+                    <label for="inputImg" class="form-label">Alterar Imagem do Produto (Jpg e Png)</label>
+                    <input type="file" class="form-control" id="inputImg" name="img" value="">
+                </div>
+                <div class="col-12">
+                    <input type="submit" class="btn btn-primary" value="Salvar" />
+                </div>
+            </form>
+        </div>  
+    </div>
+</div>
+
+<!-- Conteúdo da página termina aqui -->
+<{{>partials/footer}}    

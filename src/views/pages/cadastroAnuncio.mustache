@@ -1,0 +1,39 @@
+{{>partials/header}}
+    
+<!-- Side bar começa aqui -->
+{{>partials/sidebar}}
+
+<script> document.title = "Cadastro de Anúncios" </script>
+
+<!-- Conteúdo da página começa aqui -->
+<div class="col-10">
+  <div class="container">
+        <div class="row">
+            <div class="sidebar-heading mt-3 mb-4 py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+                Cadastro de Anúncios
+            </div>
+            <a href="#" class="btn btn-primary">Ver Anúncios no Site</a>
+            <form class="formularioCadastro row g-3" enctype="multipart/form-data" method="POST" action="/anuncio/adicionar"> 
+                <div class="col-md-4">
+                    <label for="inputAnuncio" class="form-label">Produto do Anúncio</label>
+                    <select id="inputAnuncio" class="form-select" name="cod_produto">
+                        <option>Selecione...</option>
+                        {{#produtos}}
+                            <option value="{{COD_PRODUTO}}">{{NOME}}</option>
+                        {{/produtos}}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputImg" class="form-label">Imagem Ilustrativa do Produto (jpg e png)</label>
+                    <input type="file" class="form-control" id="inputImg" name="img">
+                </div>
+                <div class="col-12">
+                    <input type="submit" class="btn btn-primary" value="Cadastrar" />
+                </div>
+            </form>
+        </div>  
+    </div>
+</div>
+
+<!-- Conteúdo da página termina aqui -->
+<{{>partials/footer}}    

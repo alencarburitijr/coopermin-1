@@ -115,9 +115,9 @@ export const listaContratos = async (req, res) => {
         // let contratos = await Contrato.findAll({
         //     attributes: ['COD_CONTRATO', 'DATA_EMISSAO', 'DATA_ENTREGA', 'VALOR', 'DESCONTO'],
         //     include: [
-        //         { model: ContratoItem, attributes: ['ITEM_CONTRATO'] },
-        //         { model: Associado, attributes: ['COD_ASSOCIADO'] },
-        //         { model: Cliente, attributes: ['NOME'] }
+        //         { model: Associado  },
+        //         { model: Cliente  },
+        //         { model: ContratoItem },
         //     ],
         // });
 

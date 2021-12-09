@@ -6,31 +6,37 @@ import { Associado } from "./Associado.js";
 import { Usuario } from "./Usuario.js";
 import { AssociadoTelefone } from './AssociadoTelefone.js';
 import { Cliente } from './Cliente.js';
+import { Produto } from './Produto.js';
+import { Anuncio } from './Anuncio.js';
 
 /* Relacionamentos de tabelas do Sequelize */
 
 Pedido.hasMany(PedidoItem, { foreignKey: 'COD_PEDIDO' });
 
-Contrato.hasMany(ContratoItem, { foreignKey: 'COD_CONTRATO' });
+Contrato.hasMany(ContratoItem);
 
-Cliente.hasMany(Contrato, { foreignKey: 'COD_CLIENTE' });
+Cliente.hasMany(Contrato);
 
-Associado.hasMany(Contrato, { foreignKey: 'COD_ASSOCIADO' })
+Associado.hasMany(Contrato)
 
-Associado.hasMany(Usuario, { foreignKey: 'COD_ASSOCIADO' });
+Associado.hasMany(Usuario);
 
 Associado.hasMany(AssociadoTelefone, { foreignKey: 'COD_ASSOCIADO' });
 
+Produto.hasMany(Anuncio);
+
+Anuncio.belongsTo(Produto, { foreignKey: 'COD_PRODUTO' });
+
 AssociadoTelefone.belongsTo(Associado);
 
-Contrato.belongsTo(Associado);
+Contrato.belongsTo(Associado, { foreignKey: 'COD_ASSOCIADO' });
 
-Contrato.belongsTo(Cliente);
+Contrato.belongsTo(Cliente, { foreignKey: 'COD_CLIENTE' });
 
-Usuario.belongsTo(Associado);
+Usuario.belongsTo(Associado, { foreignKey: 'COD_ASSOCIADO' });
 
 PedidoItem.belongsTo(Pedido);
 
-ContratoItem.belongsTo(Contrato);
+ContratoItem.belongsTo(Contrato, { foreignKey: 'COD_CONTRATO', foreignKeyConstraint: true });
 
-export { Contrato, Pedido, ContratoItem, PedidoItem, Associado, AssociadoTelefone, Usuario, Cliente };
+export { Contrato, Pedido, ContratoItem, PedidoItem, Associado, AssociadoTelefone, Usuario, Cliente, Produto, Anuncio };

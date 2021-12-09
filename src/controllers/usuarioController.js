@@ -47,26 +47,25 @@ export const loginSession = async (req, res) => {
     let login = req.body.login;
     let senha = req.body.senha;
 
-    let attributes = ['COD_USUARIO', 'COD_ASSOCIADO', 'LOGIN', 'SENHA', 'TIPO', 'BLOQUEADO'];
-
     try {
-        let usuario = await Usuario.findOne({ where: { login }, attributes });
+        let usuario = await Usuario.findOne({ where: { login }, attributes: ['LOGIN', 'SENHA'] });
         if(!usuario) {
             res.json({ error: true, message: "Usuário não encontrado." });
+            return;
         }
 
         let matchSenha = await bcrypt.compare(senha, usuario.SENHA);
         if(!matchSenha) {
             res.json({ error: true, message: "Usuário não encontrado." });
+            return;
         }
 
         if(usuario && matchSenha) {
             req.session.logged = true;
             res.redirect('/');
-        } else {
-            res.session.logged = false;
-            res.json({ error: true, message: "Usuário não encontrado." });
-        }
+            return;
+        } 
+        
     } catch(err) {
         res.json({ error: true, message: err.message });
     }
